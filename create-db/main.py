@@ -1,18 +1,4 @@
-import psycopg2
-from config import config
-
-
-
 def connect():
-    ''' 
-    used to connect to DB and post ver#
-
-    Example:
-    connecting to db...
-    db ver:
-    ('PostgreSQL 12.10, compiled by Visual C++ build 1914, 64-bit',)
-    db session quit
-    '''
     connection = None
     try:
         params = config()
@@ -21,10 +7,10 @@ def connect():
 
         # create a cursor
         crsr = connection.cursor()
-        print('db ver:')
-        crsr.execute('SELECT version()')
-        db_version = crsr.fetchone()
-        print(db_version)
+        print('create db:')
+        crsr.execute('CREATE DATABASE master')
+        db_create = crsr.fetchone()
+        print(db_create)
         crsr.close()
         
     except(Exception, psycopg2.DatabaseError) as error:
