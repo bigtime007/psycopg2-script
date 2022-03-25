@@ -1,3 +1,6 @@
+import psycopg2
+from config import config
+
 def connect():
     connection = None
     try:
