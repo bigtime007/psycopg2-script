@@ -10,8 +10,12 @@ def connect():
         print('db create:')
         crsr.execute("CREATE TABLE cars (id serial PRIMARY KEY, year integer, make varchar, model varchar);")
         connection.commit()
+                                                    
+        crsr.execute("SELECT * FROM cars;")
+        dt_table = None
         db_table = crsr.fetchone()
-        print(db_table)
+        if dt_table == None:
+            print('successful')
         crsr.close()
         
     except(Exception, psycopg2.DatabaseError) as error:
